@@ -13,6 +13,9 @@ public class WebsiteMod implements ModInitializer {
     public static final String MOD_ID = "websitemod";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
+    public static Runnable openWebsiteCallback = null;
+    public static String pendingUrl = null;
+
     @Override
     public void onInitialize() {
         LOGGER.info("WebsiteMod initialized!");
@@ -25,28 +28,25 @@ public class WebsiteMod implements ModInitializer {
                             .executes(context -> {
                                 String url = StringArgumentType.getString(context, "url");
 
-                                // Normalize URL
                                 if (!url.startsWith("http://") && !url.startsWith("https://")) {
                                     url = "https://" + url;
                                 }
 
                                 final String finalUrl = url;
 
-                                // Send feedback to the command sender
                                 context.getSource().sendFeedback(
                                     () -> Text.literal("§aOpening website: §b" + finalUrl),
                                     false
                                 );
 
-                                // If this is a player on the client side, open the browser
-                                if (context.getSource().getPlayer() != null) {
-                                    WebsiteModClient.openWebsite(finalUrl);
+                                if (openWebsiteCallback != null) {
+                                    pendingUrl = finalUrl;
+                                    openWebsiteCallback.run();
                                 }
 
                                 return 1;
                             })
                     )
-                    // Also allow /website without args to show usage
                     .executes(context -> {
                         context.getSource().sendFeedback(
                             () -> Text.literal("§cUsage: /website <url>"),
