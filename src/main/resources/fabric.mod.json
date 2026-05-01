@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "websitemod",
+  "version": "${version}",
+  "name": "WebsiteMod",
+  "description": "Opens websites in Minecraft using /website [link]",
+  "authors": ["WebsiteMod"],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/websitemod/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.websitemod.WebsiteMod"
+    ],
+    "client": [
+      "com.websitemod.WebsiteModClient"
+    ]
+  },
+  "mixins": [],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*",
+    "minecraft": "~${minecraft_version}",
+    "java": ">=21"
+  }
+}
