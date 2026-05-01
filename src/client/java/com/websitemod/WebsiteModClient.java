@@ -11,13 +11,13 @@ public class WebsiteModClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         WebsiteMod.LOGGER.info("WebsiteMod client initialized!");
-    }
 
-    public static void openWebsite(String url) {
-        MinecraftClient client = MinecraftClient.getInstance();
-        // Schedule on the main thread
-        client.execute(() -> {
-            client.setScreen(new WebsiteBrowserScreen(url));
-        });
+        WebsiteMod.openWebsiteCallback = () -> {
+            String url = WebsiteMod.pendingUrl;
+            if (url != null) {
+                MinecraftClient client = MinecraftClient.getInstance();
+                client.execute(() -> client.setScreen(new WebsiteBrowserScreen(url)));
+            }
+        };
     }
 }
