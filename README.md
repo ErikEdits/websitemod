@@ -1,8 +1,8 @@
 # WebsiteMod for Minecraft 1.21.1 (Fabric)
 
-Öffne Webseiten direkt aus dem Minecraft-Chat!
+Open websites directly from the Minecraft chat!
 
-## Verwendung
+## Usage
 
 ```
 /website https://google.com
@@ -10,48 +10,54 @@
 /website youtube.com
 ```
 
-Die URL wird automatisch mit `https://` ergänzt, falls kein Protokoll angegeben ist.
+The `https://` prefix is added automatically if not specified.
 
 ## Installation
 
-1. **Fabric Loader** für Minecraft 1.21.1 installieren: https://fabricmc.net/use/
-2. **Fabric API** herunterladen: https://modrinth.com/mod/fabric-api (Version für 1.21.1)
-3. Beide `.jar`-Dateien in den `mods`-Ordner legen:
+1. Install **Fabric Loader** for Minecraft 1.21.1: https://fabricmc.net/use/
+2. Download **Fabric API** for 1.21.1: https://modrinth.com/mod/fabric-api
+3. Place both `.jar` files in your mods folder:
    - Windows: `%appdata%\.minecraft\mods\`
    - Linux: `~/.minecraft/mods/`
    - Mac: `~/Library/Application Support/minecraft/mods/`
 
-## Selbst kompilieren
+## How it works
 
-### Voraussetzungen
-- Java 21 JDK
-- (optional) Gradle
+1. Type `/website [URL]` in the chat
+2. A confirmation screen briefly appears in-game
+3. The website opens automatically in your default browser
+4. The game pauses in the meantime
 
-### Build-Befehl
-```bash
-# Windows
-gradlew.bat build
-
-# Linux / Mac
-./gradlew build
-```
-
-Die fertige `.jar` findest du in `build/libs/websitemod-1.0.0.jar`.
-
-## Was passiert beim /website-Befehl?
-
-1. Du gibst `/website [URL]` im Chat ein
-2. Ein Minecraft-Screen erscheint kurz als Bestätigung
-3. Die Webseite öffnet sich automatisch in deinem Standard-Browser
-4. Das Spiel pausiert währenddessen
-
-## Kompatibilität
+## Compatibility
 
 - Minecraft: **1.21.1**
 - Loader: **Fabric 0.16.5+**
 - Java: **21+**
 - OS: Windows, macOS, Linux
 
-## Hinweis
+## Note
 
-Die Mod öffnet Webseiten im **System-Browser** (Chrome, Firefox, etc.), nicht in einem eingebetteten Browser im Spiel, da Minecraft keine Browser-Engine mitbringt.
+Websites open in your **system browser** (Chrome, Firefox, etc.) since Minecraft does not include a browser engine.
+
+---
+
+## Release Notes v1.0.0
+
+Open websites directly from the Minecraft chat!
+
+**Usage:**
+```
+/website https://google.com
+/website youtube.com
+```
+
+The `https://` prefix is added automatically if not specified.
+
+**Installation:**
+1. Install Fabric Loader for Minecraft 1.21.1: https://fabricmc.net/use/
+2. Place Fabric API for 1.21.1 in your mods folder
+3. Place this JAR in your mods folder
+   - Windows: `%appdata%\.minecraft\mods\`
+   - Linux: `~/.minecraft/mods/`
+
+**Note:** Websites open in your system browser (Chrome, Firefox, etc.)
