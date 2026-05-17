@@ -4,7 +4,7 @@
   "version": "${version}",
   "name": "WebsiteMod",
   "description": "Opens websites in Minecraft using /website [link]",
-  "authors": ["WebsiteMod"],
+  "authors": ["ErikEdits"],
   "contact": {},
   "license": "MIT",
   "icon": "assets/websitemod/icon.png",
