@@ -26,12 +26,12 @@ public class WebsiteBrowserScreen extends Screen {
         this.addDrawableChild(ButtonWidget.builder(
             Text.literal("Open in Browser"),
             button -> openInSystemBrowser()
-        ).dimensions(this.width / 2 - 100, this.height / 2 - 10, 200, 20).build());
+        ).dimensions(this.width / 2 - 100, 160, 200, 20).build());
 
         this.addDrawableChild(ButtonWidget.builder(
             Text.literal("Close"),
             button -> this.close()
-        ).dimensions(this.width / 2 - 100, this.height / 2 + 20, 200, 20).build());
+        ).dimensions(this.width / 2 - 100, 190, 200, 20).build());
 
         openInSystemBrowser();
     }
@@ -73,12 +73,12 @@ public class WebsiteBrowserScreen extends Screen {
             this.textRenderer,
             Text.literal("§6§lWebsiteMod Browser"),
             centerX,
-            this.height / 2 - 80,
+            40,
             0xFFFFFF
         );
 
         int boxX = centerX - 200;
-        int boxY = this.height / 2 - 60;
+        int boxY = 70;
         context.fill(boxX - 2, boxY - 2, boxX + 402, boxY + 32, 0xFF333333);
         context.fill(boxX, boxY, boxX + 400, boxY + 30, 0xFF1a1a2e);
 
@@ -95,7 +95,7 @@ public class WebsiteBrowserScreen extends Screen {
             this.textRenderer,
             Text.literal("§7The website has been opened in your system browser."),
             centerX,
-            this.height / 2 - 25,
+            115,
             0xFFFFFF
         );
 
@@ -104,7 +104,7 @@ public class WebsiteBrowserScreen extends Screen {
                 this.textRenderer,
                 Text.literal(statusMessage),
                 centerX,
-                this.height / 2 + 55,
+                135,
                 0xFFFFFF
             );
         }
