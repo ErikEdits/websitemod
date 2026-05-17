@@ -8,6 +8,40 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - mc: "1.21.6"
+            yarn: "1.21.6+build.1"
+            loader: "0.16.14"
+            fabric: "0.128.0+1.21.6"
+            loom: "1.10-SNAPSHOT"
+          - mc: "1.21.5"
+            yarn: "1.21.5+build.1"
+            loader: "0.16.14"
+            fabric: "0.120.0+1.21.5"
+            loom: "1.10-SNAPSHOT"
+          - mc: "1.21.4"
+            yarn: "1.21.4+build.8"
+            loader: "0.16.14"
+            fabric: "0.119.5+1.21.4"
+            loom: "1.9-SNAPSHOT"
+          - mc: "1.21.3"
+            yarn: "1.21.3+build.2"
+            loader: "0.16.14"
+            fabric: "0.108.0+1.21.3"
+            loom: "1.8-SNAPSHOT"
+          - mc: "1.21.2"
+            yarn: "1.21.2+build.1"
+            loader: "0.16.14"
+            fabric: "0.107.0+1.21.2"
+            loom: "1.8-SNAPSHOT"
+          - mc: "1.21"
+            yarn: "1.21+build.9"
+            loader: "0.16.14"
+            fabric: "0.102.0+1.21"
+            loom: "1.7-SNAPSHOT"
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -24,12 +58,23 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x gradlew
 
+      - name: Update gradle.properties
+        run: |
+          sed -i "s/minecraft_version=.*/minecraft_version=${{ matrix.mc }}/" gradle.properties
+          sed -i "s/yarn_mappings=.*/yarn_mappings=${{ matrix.yarn }}/" gradle.properties
+          sed -i "s/loader_version=.*/loader_version=${{ matrix.loader }}/" gradle.properties
+          sed -i "s/fabric_version=.*/fabric_version=${{ matrix.fabric }}/" gradle.properties
+
+      - name: Update build.gradle loom version
+        run: |
+          sed -i "s/id 'fabric-loom' version '.*'/id 'fabric-loom' version '${{ matrix.loom }}'/" build.gradle
+
       - name: Build with Gradle
         run: ./gradlew build
 
       - name: Upload JAR artifact
         uses: actions/upload-artifact@v4
         with:
-          name: websitemod-jar
+          name: websitemod-${{ matrix.mc }}
           path: build/libs/websitemod-*.jar
           if-no-files-found: error
