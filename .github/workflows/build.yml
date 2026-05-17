@@ -34,7 +34,7 @@ jobs:
           - mc: "1.21.2"
             yarn: "1.21.2+build.1"
             loader: "0.16.14"
-            fabric: "0.107.0+1.21.2"
+            fabric: "0.106.1+1.21.2"
             loom: "1.8-SNAPSHOT"
           - mc: "1.21"
             yarn: "1.21+build.9"
