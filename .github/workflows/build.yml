@@ -64,6 +64,7 @@ jobs:
           sed -i "s/loader_version=.*/loader_version=${{ matrix.loader }}/" gradle.properties
           sed -i "s/fabric_version=.*/fabric_version=${{ matrix.fabric }}/" gradle.properties
           sed -i "s/mod_version=.*/mod_version=${{ matrix.mod_version }}+mc${{ matrix.mc }}/" gradle.properties
+          echo "// Target: ${{ matrix.mc }}" >> src/main/java/com/websitemod/WebsiteMod.java
       - name: Update build.gradle loom version
         run: |
           sed -i "s/id 'fabric-loom' version '.*'/id 'fabric-loom' version '${{ matrix.loom }}'/" build.gradle
