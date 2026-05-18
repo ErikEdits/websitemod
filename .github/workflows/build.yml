@@ -78,5 +78,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: websitemod-${{ matrix.mc }}
-          path: build/libs/websitemod-*[0-9].jar
+          path: |
+            build/libs/websitemod-*.jar
+            !build/libs/websitemod-*-dev.jar
+            !build/libs/websitemod-*-sources.jar
           if-no-files-found: error
