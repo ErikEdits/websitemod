@@ -66,6 +66,3 @@ publishing {
 	repositories {
 	}
 }
-
-// Always build the remapped JAR
-build.finalizedBy(remapJar)
