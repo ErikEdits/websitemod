@@ -68,20 +68,10 @@ jobs:
       - name: Update build.gradle loom version
         run: |
           sed -i "s/id 'fabric-loom' version '.*'/id 'fabric-loom' version '${{ matrix.loom }}'/" build.gradle
-     - name: Build with Gradle
+      - name: Build with Gradle
         run: ./gradlew remapJar
       - name: List build output
         run: ls -la build/libs/
-      - name: Rename dev JAR if needed
-        run: |
-          cd build/libs
-          NORMAL=$(ls websitemod-*.jar 2>/dev/null | grep -v '\-dev\.jar' | grep -v '\-sources\.jar' | head -1)
-          if [ -z "$NORMAL" ]; then
-            for f in websitemod-*-dev.jar; do
-              [ -f "$f" ] && mv "$f" "${f%-dev.jar}.jar"
-            done
-          fi
-          ls -la
       - name: Upload JAR artifact
         uses: actions/upload-artifact@v4
         with:
