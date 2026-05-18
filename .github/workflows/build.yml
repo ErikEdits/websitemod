@@ -70,6 +70,10 @@ jobs:
           sed -i "s/id 'fabric-loom' version '.*'/id 'fabric-loom' version '${{ matrix.loom }}'/" build.gradle
       - name: Build with Gradle
         run: ./gradlew build
+
+      - name: List build output
+        run: ls -la build/libs/
+
       - name: Upload JAR artifact
         uses: actions/upload-artifact@v4
         with:
